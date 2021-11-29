@@ -9,6 +9,7 @@ This solution implements a simple reservation system developed for technical eva
 * ReservationSystem.Data ==> .NET 5 Class Library (Data Access Layer)
 * ReservationSystem.Core ==> .NET 5 Class Library (Infrastructure Layer)
 * ReservationSystem.Root ==> .NET 5 Class Library (Dependency injection and database creation)
+
 For more details, see the README.md files on each project.
 
 
