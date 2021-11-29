@@ -1,4 +1,5 @@
 ﻿# ReservationSystem.Application
+Implements the presentation layer of the solution.
 
 ## NET Core + Angular
 This project combines ASP.NET Core MVC .NET 5 and Angular 13.
