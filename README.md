@@ -20,7 +20,7 @@ For more details, see the README.md files on each project.
 
 ## Technologies and tools used
 * Microsoft Visual Studio 2019 version 16.11.7
-* Microsoft Visual Studio Code 
+* Visual Studio Code 1.62.3
 * .NET 5 / ASP.NET MVC Core
 * Microsoft SQLServer 2016 (Installed with Visual Studio)
 * EntityFramework (version 5.0.12 for Core, Design and SqlServer)
