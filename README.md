@@ -13,6 +13,6 @@ The projects included are organized in an N-Tier Architecture:
 
 - ReservationSystem.Core ==> .NET 5 Class Library (Infrastructure Layer)
 
-- ReservationSystem.Root ==> .NET 5 Class Library (Dependency Injection and Database Initialization)
+- ReservationSystem.Root ==> .NET 5 Class Library (Dependency injection and database creation)
 
 ***For more details, see the README.md files on each project.
