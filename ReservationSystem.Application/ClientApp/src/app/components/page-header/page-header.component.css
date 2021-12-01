@@ -1,0 +1,11 @@
+.page-header{
+    display: flex;
+}
+@media (max-width:480px) {
+    .page-header{
+        flex-direction: column;
+    }
+    .ph-btn{
+        display: none;
+    }
+}

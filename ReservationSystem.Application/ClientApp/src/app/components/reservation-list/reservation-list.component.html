@@ -1,0 +1,6 @@
+<app-page-header title="Reservation List" goToUrl="/reservations/create" goToLabel="Create Reservation"></app-page-header>
+
+<app-reservation-item *ngFor="let reservation of reservations 
+| paginate: { itemsPerPage: 8, currentPage: currentPage }" [reservation]="reservation"></app-reservation-item>
+<pagination-controls class="app-pagination" (pageChange)="currentPage = $event" previousLabel="" nextLabel="">
+</pagination-controls>
