@@ -6,6 +6,8 @@ using ReservationSystem.Data.Repositories;
 using ReservationSystem.Data.Repositories.Impl;
 using ReservationSystem.Business.Services;
 using ReservationSystem.Business.Services.Impl;
+using System;
+using ReservationSystem.Core.Models;
 
 namespace ReservationSystem.Root
 {
@@ -20,8 +22,10 @@ namespace ReservationSystem.Root
             services.AddScoped<ReservationSystemContext>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
+            services.AddScoped<IContactTypeService, ContactTypeService>();
         }
-        public static void CreateDatabase(System.IServiceProvider services)
+        public static void CreateDatabase(IServiceProvider services, IConfiguration configuration)
         {
             var context = services.GetRequiredService<ReservationSystemContext>();
             context.Database.Migrate();
