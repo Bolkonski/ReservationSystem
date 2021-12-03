@@ -19,14 +19,5 @@ export class TextEditorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  displayContent(): void {
-    this.content = this.rteObj.value;
-    console.log(this.content);
-    this.rteObj.value = "";
-  }
-  restoreContent(): void {
-    this.rteObj.value = this.content;
-  }
 }
 

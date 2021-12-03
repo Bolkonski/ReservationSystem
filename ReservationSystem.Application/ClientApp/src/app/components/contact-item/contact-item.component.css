@@ -1,0 +1,5 @@
+@media (max-width:480px) {
+    .type-col,.phone-col,.date-col{
+        display: none;
+    }
+}

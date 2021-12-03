@@ -1,13 +1,15 @@
 <div id="banner">
     <div id="banner-container" class="container">
-        <div id="company-name"><p><strong>ISU</strong>Corp</p></div>
+        <div id="company-name" routerLink="/"><p><strong>ISU</strong>Corp</p></div>
         <div id="company-description">
-            <p>World Class</p>
-            <p>Software Development</p>
+            <p routerLink="/">World Class</p>
+            <p routerLink="/">Software Development</p>
         </div>
-        <div id="banner-nav">
-            <p routerLink="/reservations">Reservations</p>
-            <p routerLink="/contacts">Contacts</p>
+        <div id="banner-nav">            
+            <p *ngIf="url!='/'&&url!='/reservations'" routerLink="/reservations">Reservation List</p>
+            <p *ngIf="url=='/reservations'" routerLink="/reservations/create">Create Reservation</p>
+            <p *ngIf="url!='/contacts'" routerLink="/contacts">Contact List</p>
+            <p *ngIf="url=='/contacts'" routerLink="/contacts/create">Create Contact</p>
         </div>
     </div>
 </div>

@@ -14,6 +14,10 @@ export class ContactListComponent implements OnInit {
   constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
+    this.loadContacts();
+  }
+
+  loadContacts(){
     this.contactService.getContacts().subscribe(
       (contacts) => {
         this.contacts = contacts;
@@ -21,4 +25,13 @@ export class ContactListComponent implements OnInit {
     );
   }
 
+  deleteContact(contact: Contact){
+    if(confirm("Are you sure to delete this contact?")){
+      this.contactService.deleteContact(contact.id)
+      .subscribe(()=>{
+        alert('Contact deleted');
+        this.loadContacts();
+      });
+    }
+  }
 }

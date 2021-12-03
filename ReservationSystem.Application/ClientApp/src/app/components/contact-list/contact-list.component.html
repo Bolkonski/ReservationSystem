@@ -1,9 +1,11 @@
 <app-page-header title="Contact List" goToUrl="/contacts/create" goToLabel="Create Contact"></app-page-header>
 
-<app-contact-item *ngFor="let contact of contacts| paginate: { itemsPerPage: 8, currentPage: currentPage }" 
-[contact]="contact"></app-contact-item>
-<pagination-controls class="app-pagination"
-(pageChange)="currentPage = $event"
-previousLabel=""
-nextLabel=""
-></pagination-controls>
+<table>    
+    <tbody>
+        <app-contact-item *ngFor="let contact of contacts| paginate: { itemsPerPage: 8, currentPage: currentPage }" 
+        [contact]="contact" (onDeleteContact)="deleteContact(contact)"></app-contact-item>
+    </tbody>
+</table>
+
+<pagination-controls class="app-pagination" (pageChange)="currentPage = $event" 
+previousLabel="" nextLabel=""></pagination-controls>

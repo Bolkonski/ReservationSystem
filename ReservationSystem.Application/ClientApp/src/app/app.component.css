@@ -1,7 +1,7 @@
 .container{
     max-width: 70%;
-    height: 100%;
     margin: auto;
+    background-color: white;
 }
 #banner{
     background-image: url('https://cdn.pixabay.com/photo/2020/05/18/10/56/banner-5185674_960_720.jpg');
@@ -11,6 +11,8 @@
 #banner-container{
     display: flex;
     color: white;
+    background-color: transparent;
+    height: 100%;
 }
 #banner-container>div{
     margin: auto;
@@ -22,6 +24,10 @@
 #company-description{
     flex-grow: 1;
     font-size: 20px;
+}
+#company-name>p,
+#company-description>p{
+    cursor: pointer;
 }
 #banner-nav{
     flex-grow: 1;

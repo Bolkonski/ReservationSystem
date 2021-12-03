@@ -1,0 +1,10 @@
+#reservation-form{
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+}
+#reservation-date
+{
+    padding: 4px;
+    margin-top: 5px;
+}

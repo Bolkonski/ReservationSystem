@@ -1,5 +1,18 @@
 .page-header{
     display: flex;
+    margin: 5px 0 5px 0; 
+    background-color: white;
+}
+.ph-title{
+    color:red;
+    font-size:18px;
+    flex-grow: 2;
+}
+.ph-description{
+    flex-grow: 1;
+}
+.ph-btn{
+    flex-grow: 1;
 }
 @media (max-width:480px) {
     .page-header{

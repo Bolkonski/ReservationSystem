@@ -6,7 +6,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -18,7 +18,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -30,7 +30,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -42,7 +42,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -54,7 +54,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -66,7 +66,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -78,7 +78,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -90,7 +90,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -102,7 +102,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -114,7 +114,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -126,7 +126,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -138,7 +138,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -150,7 +150,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -162,7 +162,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -174,7 +174,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -186,7 +186,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -198,7 +198,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -210,7 +210,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -222,7 +222,7 @@
       "favorite": true,
       "date": "2020-01-02",
       "description": "this is a test",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "id": 1,
         "name": "juana"
@@ -231,10 +231,10 @@
     {
       "description": "<p _ngcontent-fac-c59=\"\">The Rich Text Editor component is WYSIWYG (\"what you see is what you get\") editor that provides the best user experience to create and update the content. Users can format their content using standard toolbar commands.</p><p _ngcontent-fac-c59=\"\"><b _ngcontent-fac-c59=\"\">Key features:</b></p><ul _ngcontent-fac-c59=\"\"><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Provides &lt;IFRAME&gt; and &lt;DIV&gt; modes.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Capable of handling markdown editing.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Contains a modular library to load the necessary functionality on demand.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Provides a fully customizable toolbar.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Provides HTML view to edit the source directly for developers.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Supports third-party library integration.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Allows preview of modified content before saving it.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Handles images, hyperlinks, video, hyperlinks, uploads, etc.</p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Contains undo/redo manager. </p></li><li _ngcontent-fac-c59=\"\"><p _ngcontent-fac-c59=\"\">Creates bulleted and numbered lists.</p></li></ul>",
       "date": "2020-01-02",
-      "contactId": 1,
+      "contactTypeId": 1,
       "contact": {
         "name": "sdtt",
-        "contactTypeId": null,
+        "contactTypeId": 1,
         "birthDate": "2021-11-11",
         "phone": "7"
       },

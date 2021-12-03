@@ -1,7 +1,15 @@
-<input type="text" [(ngModel)]="name" placeholder="Contact Name">
-<select required [(ngModel)]="contactId">
-    <option value="" selected>Contact Type</option>
-    <option *ngFor="let type of contactTypes" [value]="type.id">{{type.name}}</option>
-</select>
-<input type="text" [(ngModel)]="phone" placeholder="Phone">
-<input type="date" [(ngModel)]="birthDate" placeholder="Birth Date">
+<div id="info">
+    <p id="search-contact" *ngIf="searchingContact">
+        <mat-spinner color="white" diameter="20"></mat-spinner>
+        Looking for existing contats
+    </p>    
+</div>
+<div id="contact-inputs">
+    <input type="text" placeholder="Contact Name" [(ngModel)]="name" (keyup)="searchExistingContact()" required>
+    <select [(ngModel)]="contactTypeId" required>
+        <option value="" selected>Contact Type</option>
+        <option *ngFor="let type of contactTypes" [value]="type.id">{{type.name}}</option>
+    </select>
+    <input type="tel" placeholder="Phone" [(ngModel)]="phone" >
+    <input type="date" placeholder="Birth Date" [(ngModel)]="birthDate" required>
+</div>

@@ -1,0 +1,15 @@
+<app-page-header title="Create Reservation" goToUrl="/reservations" goToLabel="Reservation List"></app-page-header>
+
+<form id="reservation-form" (ngSubmit)="onSubmit()">
+    <app-contact-form></app-contact-form>
+
+    <app-text-editor></app-text-editor>
+
+    <div>
+        <input id="reservation-date" type="date"  placeholder="Birth Date" [(ngModel)]="reservationDate" />
+    </div>
+
+    <div id="actions">
+        <input type="submit" value="Send" class="btn btn-red" />
+    </div>
+</form>

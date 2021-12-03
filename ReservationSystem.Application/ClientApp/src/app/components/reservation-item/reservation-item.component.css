@@ -1,12 +1,9 @@
-.row{
-    background-color: lightgray;
-    margin: 5px 0 5px 0;
-    display: flex;
-}
-.cell{
-    margin: 5px 5px 5px 5px;
-    flex-grow: 1;
-}
 .favorite{
     display: flex;
+}
+/*Mobile*/
+@media (max-width:480px) {
+    .ranking{
+        display: none;
+    }
 }

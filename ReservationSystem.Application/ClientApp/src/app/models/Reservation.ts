@@ -5,7 +5,7 @@ export interface Reservation {
     ranking?: number,
     favorite?: boolean,
     date: string,
-    description: string,
-    contactId: number,
+    description?: string,
+    contactId?: number,
     contact: Contact
 }

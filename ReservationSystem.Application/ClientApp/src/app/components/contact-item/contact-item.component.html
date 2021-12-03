@@ -1,1 +1,20 @@
-<p>contact-item works!</p>
+<tr class="row">
+    <td class="cell">
+        <p>{{contact.name}}</p>
+    </td>
+    <td class="cell type-col">
+        <p>{{contact.contactTypeId}}</p>
+    </td>
+    <td class="cell phone-col">
+        <p>{{contact.phone}}</p>
+    </td>
+    <td class="cell date-col">
+        <p>{{contact.birthDate}}</p>
+    </td>
+    <td class="cell">
+        <div class="cell-btns">
+            <button class="btn btn-gray" [routerLink]="['../contacts/edit',contact.id]">{{'Edit'|uppercase}}</button>
+            <button class="btn btn-red" (click)="onDelete(contact)">{{'Delete'|uppercase}}</button>
+        </div>        
+    </td>
+</tr>

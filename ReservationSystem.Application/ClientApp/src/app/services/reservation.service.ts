@@ -14,13 +14,21 @@ const httpOptions = {
 })
 export class ReservationService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getReservations(): Observable<Reservation[]>{
+  getReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${API_URL}/reservations`);
+  }
+
+  getReservationById(id: number): Observable<Reservation> {
+    return this.http.get<Reservation>(`${API_URL}/reservations/${id}`);
   }
 
   addReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(`${API_URL}/reservations`, reservation, httpOptions);
+  }
+
+  updateReservation(reservation: Reservation): Observable<void> {
+    return this.http.put<void>(`${API_URL}/reservations/${reservation.id}`, reservation, httpOptions);
   }
 }

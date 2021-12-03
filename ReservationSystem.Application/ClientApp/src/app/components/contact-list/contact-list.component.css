@@ -1,0 +1,11 @@
+/*Pagination*/
+.app-pagination ::ng-deep .ngx-pagination li {
+    background: rgb(173, 168, 168);
+    border-radius: 4px;
+}
+.app-pagination ::ng-deep .ngx-pagination .current {
+    background: rgb(88, 83, 83);
+}
+.app-pagination{
+    margin-top: 100px;
+}
