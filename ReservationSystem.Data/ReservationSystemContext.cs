@@ -18,39 +18,48 @@ namespace ReservationSystem.Data
         {
             //Table relations and constraints go here
 
-            builder.Entity<Reservation>()
-                .HasOne(r => r.Contact)
-                .WithMany(c => c.Reservations)
+            builder.Entity<Reservation>(r => {
+                r.HasOne<Contact>(x=>x.Contact)
+                .WithMany()
                 .HasForeignKey(r => r.ContactId);
 
-            builder.Entity<Reservation>()
-                .Property(r => r.Ranking)
-                .HasDefaultValue(0);
+                r.Property(r => r.Date)
+                .IsRequired();
 
-            builder.Entity<Reservation>()
-                .Property(r => r.Ranking)
+                r.Property(r => r.Ranking)
+                .HasDefaultValue(1);
+
+                r.Property(r => r.Favorite)
                 .HasDefaultValue(false);
+            });
 
-            builder.Entity<Contact>()
-                .HasOne(c => c.ContactType)
-                .WithMany(ct => ct.Contacts)
+            builder.Entity<Contact>(c =>
+            {
+                c.HasOne<ContactType>()
+                .WithMany()
                 .HasForeignKey(c => c.ContactTypeId);
 
-            builder.Entity<Contact>()
-                .HasIndex(c => c.Name)
+                c.HasIndex(c => c.Name)
                 .IsUnique();
 
-            builder.Entity<Contact>()
-                .Property(c => c.Name)
+                c.Property(c => c.Name)
                 .IsRequired();
 
-            builder.Entity<ContactType>()
-                .HasIndex(ct => ct.Name)
+                c.Property(c => c.BirthDate)
+                .IsRequired();
+
+                c.Property(c => c.ContactTypeId)
+                .IsRequired();
+            });
+
+            builder.Entity<ContactType>(ct => {
+                ct.HasIndex(ct => ct.Name)
                 .IsUnique();
 
-            builder.Entity<ContactType>()
-                .Property(ct => ct.Name)
+                ct.Property(ct => ct.Name)
                 .IsRequired();
+            });
+                
         }
     }
 }

@@ -10,7 +10,7 @@ using ReservationSystem.Data;
 namespace ReservationSystem.Data.Migrations
 {
     [DbContext(typeof(ReservationSystemContext))]
-    [Migration("20211129173101_Initial")]
+    [Migration("20211202030145_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,11 +80,19 @@ namespace ReservationSystem.Data.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ContactId1")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsFavorite")
-                        .HasColumnType("bit");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Favorite")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("Ranking")
                         .ValueGeneratedOnAdd()
@@ -95,39 +103,33 @@ namespace ReservationSystem.Data.Migrations
 
                     b.HasIndex("ContactId");
 
+                    b.HasIndex("ContactId1");
+
                     b.ToTable("Reservation");
                 });
 
             modelBuilder.Entity("ReservationSystem.Core.Models.Contact", b =>
                 {
-                    b.HasOne("ReservationSystem.Core.Models.ContactType", "ContactType")
-                        .WithMany("Contacts")
+                    b.HasOne("ReservationSystem.Core.Models.ContactType", null)
+                        .WithMany()
                         .HasForeignKey("ContactTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ContactType");
                 });
 
             modelBuilder.Entity("ReservationSystem.Core.Models.Reservation", b =>
                 {
-                    b.HasOne("ReservationSystem.Core.Models.Contact", "Contact")
-                        .WithMany("Reservations")
+                    b.HasOne("ReservationSystem.Core.Models.Contact", null)
+                        .WithMany()
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ReservationSystem.Core.Models.Contact", "Contact")
+                        .WithMany()
+                        .HasForeignKey("ContactId1");
+
                     b.Navigation("Contact");
-                });
-
-            modelBuilder.Entity("ReservationSystem.Core.Models.Contact", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("ReservationSystem.Core.Models.ContactType", b =>
-                {
-                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

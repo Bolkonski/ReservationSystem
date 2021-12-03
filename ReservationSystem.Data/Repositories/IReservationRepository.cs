@@ -8,10 +8,10 @@ namespace ReservationSystem.Data.Repositories
     {
         Task<IEnumerable<Reservation>> GetReservations();
         Task<Reservation> GetReservationById(int id);
-        Task<Reservation> GetReservationDetails(int id);
         bool ReservationExists(int id);
         Task<Reservation> Add(Reservation reservation);
-        Task Update(Reservation reservation);
         Task Delete(Reservation reservation);
+        void Update(Reservation reservation);
+        Task Save();
     }
 }

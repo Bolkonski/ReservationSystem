@@ -17,5 +17,9 @@ namespace ReservationSystem.Data.Repositories.Impl
         {
             return await _context.ContactType.ToListAsync();
         }
+        public bool ContactTypeExists(int id)
+        {
+            return _context.ContactType.Any(c => c.Id == id);
+        }
     }
 }

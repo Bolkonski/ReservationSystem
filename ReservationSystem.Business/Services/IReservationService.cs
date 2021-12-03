@@ -10,12 +10,13 @@ namespace ReservationSystem.Business.Services
 
         Task Delete(Reservation reservation);
 
-        Task<Reservation> GetReservationDetails(int id);
-
         Task<IEnumerable<Reservation>> GetReservations();
+
         Task<Reservation> GetReservationById(int id);
 
-        Task Update(Reservation reservation);
+        void Update(Reservation reservation);
+
+        Task Save();
 
         bool ReservationExists(int id);
     }

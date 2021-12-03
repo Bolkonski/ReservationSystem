@@ -1,9 +1,17 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ReservationSystem.Business.Services;
+using ReservationSystem.Core.Models;
 using ReservationSystem.Root;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace ReservationSystem.Application
 {
@@ -12,13 +20,18 @@ namespace ReservationSystem.Application
         public static void Main(string[] args)
         {
             //CreateHostBuilder(args).Build().Run();
+            string directory = Directory.GetCurrentDirectory();
+            string dbFilePath = $"{directory}\\contact-types.json";
+
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
                 {
-                    CompositionRoot.CreateDatabase(services);
+                    var dbInitializer = services.GetRequiredService<IDbInitializeService>();
+                    dbInitializer.CreateDatabase();
+                    dbInitializer.SeedData(dbFilePath);
                 }
                 catch (Exception ex)
                 {

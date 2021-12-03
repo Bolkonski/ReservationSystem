@@ -18,16 +18,25 @@ namespace ReservationSystem.Root
         {
             services.AddDbContext<ReservationSystemContext>(opts => opts.UseLazyLoadingProxies().UseSqlServer(
                 configuration.GetConnectionString("ReservationSystemContext")));
+            //DB Context
             services.AddScoped<ReservationSystemContext>();
+            //Reservation
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IReservationService, ReservationService>();
+            //Contact
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IContactService, ContactService>();
+            //Contact Type
             services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
             services.AddScoped<IContactTypeService, ContactTypeService>();
+            //DB Creation and Seeding
+            services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<IDbInitializeService, DbInitializeService>();
         }
-        public static void CreateDatabase(IServiceProvider services)
-        {
-            var context = services.GetRequiredService<ReservationSystemContext>();
-            context.Database.Migrate();
-        }
+        //public static void CreateDatabase(IServiceProvider services)
+        //{
+        //    var context = services.GetRequiredService<ReservationSystemContext>();
+        //    context.Database.Migrate();
+        //}
     }
 }

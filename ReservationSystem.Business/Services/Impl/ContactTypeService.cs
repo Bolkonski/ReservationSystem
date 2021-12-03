@@ -20,5 +20,9 @@ namespace ReservationSystem.Business.Services.Impl
         {
             return await _repository.GetContactTypes();
         }
+        public bool ContactTypeExists(int id)
+        {
+            return _repository.ContactTypeExists(id);
+        }
     }
 }

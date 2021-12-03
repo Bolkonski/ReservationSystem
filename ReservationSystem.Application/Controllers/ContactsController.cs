@@ -42,6 +42,21 @@ namespace ReservationSystem.Application.Controllers
             return contact;
         }
 
+        // POST: api/Contacts/getbyname
+        [HttpPost]
+        [Route("getbyname")]
+        public async Task<ActionResult<Contact>> GetContactByName(Contact contact)
+        {
+            var foundContact = await _service.GetContactByName(contact.Name);
+
+            if (foundContact == null)
+            {
+                return NotFound();
+            }
+
+            return foundContact;
+        }
+
         // PUT: api/Contacts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -52,7 +67,17 @@ namespace ReservationSystem.Application.Controllers
                 return BadRequest();
             }
 
-            _service.Update(contact);
+            try
+            {
+                _service.Update(contact);
+            }
+            catch (Exception ex)
+            {
+                if (ex is ArgumentException)
+                    return BadRequest(ex.Message);
+                else
+                    return Problem("Error creating reservation", "Reservations Controller", 500);
+            }
 
             try
             {
@@ -76,9 +101,19 @@ namespace ReservationSystem.Application.Controllers
         // POST: api/Contacts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Contact>> PostContact(Contact contact)
+        public async Task<ActionResult> PostContact(Contact contact)
         {
-            await _service.Add(contact);
+            try
+            {
+                await _service.Add(contact);
+            }
+            catch (Exception ex)
+            {
+                if (ex is ArgumentException)
+                    return BadRequest(ex.Message);
+                else
+                    return Problem("Error creating contact","Contacts Controller",500);
+            }
 
             return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
         }

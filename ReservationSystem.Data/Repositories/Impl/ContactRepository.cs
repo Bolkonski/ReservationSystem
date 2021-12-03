@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReservationSystem.Data.Repositories.Impl
 {
-    class ContactRepository : IContactRepository
+    public class ContactRepository : IContactRepository
     {
         private ReservationSystemContext _context;
         public ContactRepository(ReservationSystemContext context)
@@ -38,9 +38,19 @@ namespace ReservationSystem.Data.Repositories.Impl
             return await _context.Contact.FindAsync(id);
         }
 
+        public async Task<Contact> GetContactByName(string name)
+        {
+            return await _context.Contact.FirstOrDefaultAsync(x=>x.Name==name);
+        }
+
         public bool ContactExists(int id)
         {
             return _context.Contact.Any(e => e.Id == id);
+        }
+
+        public bool ContactExists(string name)
+        {
+            return _context.Contact.Any(e => e.Name == name);
         }
 
         public async Task Delete(Contact contact)

@@ -11,7 +11,9 @@ namespace ReservationSystem.Business.Services
     {
         Task<IEnumerable<Contact>> GetContacts();
         Task<Contact> GetContactById(int id);
+        Task<Contact> GetContactByName(string name);
         bool ContactExists(int id);
+        bool ContactExists(string name);
         Task<Contact> Add(Contact contact);
         Task Delete(Contact contact);
         void Update(Contact contact);

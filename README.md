@@ -8,7 +8,7 @@ This solution implements a simple reservation system developed for technical eva
 * ReservationSystem.Business ==> .NET 5 Class Library (Business Logic Layer)
 * ReservationSystem.Data ==> .NET 5 Class Library (Data Access Layer)
 * ReservationSystem.Core ==> .NET 5 Class Library (Infrastructure Layer)
-* ReservationSystem.Root ==> .NET 5 Class Library (Dependency injection and database creation)
+* ReservationSystem.Root ==> .NET 5 Class Library (Dependency Injection Layer)
 
 For more details, see the README.md files on each project.
 
@@ -22,3 +22,11 @@ For more details, see the README.md files on each project.
 * Angular CLI version 13.0.3
 * Node.js version 14.18.1
 * npm version 6.14.15
+
+## Status of the project (03-12-2021)
+There are some pending development taskks:
+* Client-side validation of inputs.
+* Rating and adding reservations to favorites
+* Internationalization with angular.
+* Ordering data in the list views by column.
+* Some styling, web responsive issues and icons.

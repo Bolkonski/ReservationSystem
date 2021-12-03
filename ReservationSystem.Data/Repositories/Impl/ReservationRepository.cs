@@ -26,12 +26,6 @@ namespace ReservationSystem.Data.Repositories.Impl
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Reservation> GetReservationDetails(int id)
-        {
-            return await _context.Reservation
-                   .FirstOrDefaultAsync(m => m.Id == id);
-        }
-
         public async Task<IEnumerable<Reservation>> GetReservations()
         {
             return await _context.Reservation.ToListAsync();
@@ -42,15 +36,19 @@ namespace ReservationSystem.Data.Repositories.Impl
             return await _context.Reservation.FindAsync(id);
         }
 
-        public async Task Update(Reservation reservation)
-        {
-            _context.Update(reservation);
-            await _context.SaveChangesAsync();
-        }
-
         public bool ReservationExists(int id)
         {
             return _context.Reservation.Any(e => e.Id == id);
+        }
+
+        public void Update(Reservation reservation)
+        {
+            _context.Entry(reservation).State = EntityState.Modified;
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }
