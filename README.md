@@ -28,5 +28,5 @@ There are some pending development tasks:
 * Client-side validation for inputs.
 * Rating and adding reservations to favorites
 * Internationalization with Angular.
-* Ordering data in the list views by column.
+* Sorting data in the list views by column.
 * Some styling, web responsive issues and icons.
