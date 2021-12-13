@@ -5,12 +5,13 @@
     display: flex;
     justify-content: space-around;
 }
-#contact-inputs>input[type=text],
-#contact-inputs>select
+#contact-inputs input,
+#contact-inputs select
 {
     padding: 5px;
+    width: 100%;
 }
-#contact-inputs>input[type=date]
+#contact-inputs input[type=date]
 {
     padding: 4px;
 }

@@ -1,12 +1,15 @@
 <app-page-header title="Create Reservation" goToUrl="/reservations" goToLabel="Reservation List"></app-page-header>
 
-<form id="reservation-form" (ngSubmit)="onSubmit()">
-    <app-contact-form></app-contact-form>
+<form id="reservation-form" (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <app-contact-form [form]="formGroup" [checkInputs]="checkInputs"></app-contact-form>
 
     <app-text-editor></app-text-editor>
 
     <div>
-        <input id="reservation-date" type="date"  placeholder="Birth Date" [(ngModel)]="reservationDate" />
+        <input id="reservation-date" type="text" onfocus="(this.type='date')"
+          placeholder="Reservation Date" min="{{today | date:'yyyy-MM-dd'}}" name="reservationDate" 
+          formControlName="reservationDate"
+          [class.invalid-input]="!isControlValid('reservationDate') && checkInputs"/>
     </div>
 
     <div id="actions">

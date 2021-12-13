@@ -1,7 +1,7 @@
 <app-page-header title="Create Contact" goToUrl="/contacts" goToLabel="Contact List"></app-page-header>
 
 <form id="contact-create-edit-form" (ngSubmit)="onSubmit()">
-    <app-contact-form></app-contact-form>
+    <app-contact-form  [form]="formGroup" [checkInputs]="checkInputs"></app-contact-form>
 
     <div id="actions">
         <input type="submit" value="Send" class="btn btn-red" />

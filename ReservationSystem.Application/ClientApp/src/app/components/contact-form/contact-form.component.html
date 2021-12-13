@@ -4,12 +4,34 @@
         Looking for existing contats
     </p>    
 </div>
-<div id="contact-inputs">
-    <input type="text" placeholder="Contact Name" [(ngModel)]="name" (keyup)="searchExistingContact()" required>
-    <select [(ngModel)]="contactTypeId" required>
-        <option value="" selected>Contact Type</option>
-        <option *ngFor="let type of contactTypes" [value]="type.id">{{type.name}}</option>
-    </select>
-    <input type="tel" placeholder="Phone" [(ngModel)]="phone" >
-    <input type="date" placeholder="Birth Date" [(ngModel)]="birthDate" required>
+<div id="contact-inputs" [formGroup]="form">
+    <div>
+        <input type="text" placeholder="Contact Name"  name="name"                 
+        formControlName="name"
+        [class.invalid-input]="!isControlValid('name') && checkInputs"
+        (keyup)="searchExistingContact()">
+        <p>Form Status: {{ form.status }}</p>
+    </div>
+    <div>
+        <select name="contactTypeId" 
+        formControlName="contactTypeId"
+        [class.invalid-input]="!isControlValid('contactTypeId') && checkInputs"
+        >
+            <option value="" selected hidden>Contact Type</option>
+            <option *ngFor="let type of contactTypes" [value]="type.id">{{type.name}}</option>
+        </select>
+    </div>
+    <div>
+        <input type="tel" placeholder="Phone" name="phone"
+        formControlName="phone"
+        [class.invalid-input]="!isControlValid('phone') && checkInputs"
+        (keypress)="phoneKeyPress($event)" >
+    </div>
+    <div>
+        <input type="text" onfocus="(this.type='date')" 
+        formControlName="birthDate"
+        [class.invalid-input]="!isControlValid('birthDate') && checkInputs"
+        placeholder="Birth Date" name="birthDate" 
+        max="{{today | date:'yyyy-MM-dd'}}">
+    </div>
 </div>

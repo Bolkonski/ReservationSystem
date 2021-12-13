@@ -48,6 +48,7 @@ import { APP_ROUTES } from './app.routes';
     RouterModule.forRoot(APP_ROUTES),
     RichTextEditorModule,
     FormsModule,
+    ReactiveFormsModule,
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatIconModule,
