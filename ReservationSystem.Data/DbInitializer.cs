@@ -22,6 +22,7 @@ namespace ReservationSystem.Data
         public void CreateDatabase()
         {
            _context.Database.Migrate();
+           //StoredProcedures.StoredProceduresManager.Create();
         }
 
         public void SeedData(string filePath)

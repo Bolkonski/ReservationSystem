@@ -78,9 +78,6 @@ namespace ReservationSystem.Data.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ContactId1")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -95,13 +92,16 @@ namespace ReservationSystem.Data.Migrations
                     b.Property<int>("Ranking")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<int>("RatesCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasDefaultValue(0);
 
                     b.HasKey("Id");
 
                     b.HasIndex("ContactId");
-
-                    b.HasIndex("ContactId1");
 
                     b.ToTable("Reservation");
                 });
@@ -117,15 +117,11 @@ namespace ReservationSystem.Data.Migrations
 
             modelBuilder.Entity("ReservationSystem.Core.Models.Reservation", b =>
                 {
-                    b.HasOne("ReservationSystem.Core.Models.Contact", null)
+                    b.HasOne("ReservationSystem.Core.Models.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ReservationSystem.Core.Models.Contact", "Contact")
-                        .WithMany()
-                        .HasForeignKey("ContactId1");
 
                     b.Navigation("Contact");
                 });

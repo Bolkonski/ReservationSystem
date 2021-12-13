@@ -49,7 +49,6 @@ namespace ReservationSystem.Application.Controllers
         {
             try
             {
-                reservation.Contact = null;
                 await _service.Add(reservation);
             }
             catch(Exception ex)
@@ -63,7 +62,28 @@ namespace ReservationSystem.Application.Controllers
             return CreatedAtAction("GetReservation", new { id = reservation.Id }, reservation);
         }
 
-        // PUT: api/Contacts/5
+        // POST: api/Reservations/Rate
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [Route("Rate")]
+        public async Task<ActionResult<Reservation>> RateReservation(Reservation reservation)
+        {
+            try
+            {
+                await _service.Rate(reservation);
+            }
+            catch (Exception ex)
+            {
+                if (ex is ArgumentException)
+                    return BadRequest(ex.Message);
+                else
+                    return Problem("Error rating reservation", "Reservations Controller", 500);
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/Reservations/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReservation(int id, Reservation reservation)
@@ -82,7 +102,7 @@ namespace ReservationSystem.Application.Controllers
                 if (ex is ArgumentException)
                     return BadRequest(ex.Message);
                 else
-                    return Problem("Error creating reservation", "Reservations Controller", 500);
+                    return Problem("Error updating reservation", "Reservations Controller", 500);
             }
 
             try

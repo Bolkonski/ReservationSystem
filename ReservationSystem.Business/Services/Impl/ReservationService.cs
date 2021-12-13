@@ -31,6 +31,18 @@ namespace ReservationSystem.Business.Services.Impl
             return await _repository.Add(reservation);
         }
 
+        public async Task Rate(Reservation reservation)
+        {
+            ValidationResult results = validator.Validate(reservation);
+            if (!results.IsValid)
+                throw new ArgumentException(results.Errors[0].ErrorMessage);
+
+            if (!_contactService.ContactExists(reservation.ContactId))
+                throw new ArgumentException("Couldn't find the specified contact.");
+
+            await _repository.Rate(reservation);
+        }
+
         public async Task Delete(Reservation reservation)
         {
             await _repository.Delete(reservation);

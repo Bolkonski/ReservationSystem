@@ -10,6 +10,7 @@ namespace ReservationSystem.Data.Repositories
         Task<Reservation> GetReservationById(int id);
         bool ReservationExists(int id);
         Task<Reservation> Add(Reservation reservation);
+        Task Rate(Reservation reservation);
         Task Delete(Reservation reservation);
         void Update(Reservation reservation);
         Task Save();

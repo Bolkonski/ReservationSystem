@@ -49,11 +49,11 @@ namespace ReservationSystem.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Ranking = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    Ranking = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    RatesCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     Favorite = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactId = table.Column<int>(type: "int", nullable: false),
-                    ContactId1 = table.Column<int>(type: "int", nullable: true)
+                    ContactId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,12 +64,6 @@ namespace ReservationSystem.Data.Migrations
                         principalTable: "Contact",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reservation_Contact_ContactId1",
-                        column: x => x.ContactId1,
-                        principalTable: "Contact",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -93,11 +87,6 @@ namespace ReservationSystem.Data.Migrations
                 name: "IX_Reservation_ContactId",
                 table: "Reservation",
                 column: "ContactId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservation_ContactId1",
-                table: "Reservation",
-                column: "ContactId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

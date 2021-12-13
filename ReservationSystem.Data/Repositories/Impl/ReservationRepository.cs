@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ReservationSystem.Core.Models;
+using Microsoft.Data.SqlClient;
 
 namespace ReservationSystem.Data.Repositories.Impl
 {
@@ -18,6 +19,11 @@ namespace ReservationSystem.Data.Repositories.Impl
             _context.Add(reservation);
             await _context.SaveChangesAsync();
             return reservation;
+        }
+        public async Task Rate(Reservation reservation)
+        {
+            //SqlParameter id = reservation.Id;
+            await _context.Database.ExecuteSqlRawAsync("");
         }
 
         public async Task Delete(Reservation reservation)

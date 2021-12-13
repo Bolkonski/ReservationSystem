@@ -8,6 +8,8 @@ namespace ReservationSystem.Business.Services
     {
         Task<Reservation> Add(Reservation reservation);
 
+        Task Rate(Reservation reservation);
+
         Task Delete(Reservation reservation);
 
         Task<IEnumerable<Reservation>> GetReservations();

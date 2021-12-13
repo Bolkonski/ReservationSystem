@@ -29,6 +29,9 @@ namespace ReservationSystem.Data
                 r.Property(r => r.Ranking)
                 .HasDefaultValue(1);
 
+                r.Property(r => r.RatesCount)
+                .HasDefaultValue(0);
+
                 r.Property(r => r.Favorite)
                 .HasDefaultValue(false);
             });
