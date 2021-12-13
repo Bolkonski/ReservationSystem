@@ -24,9 +24,9 @@ For more details, see the README.md files on each project.
 * npm version 6.14.15
 
 ## Status of the project (03-12-2021)
-There are some pending development taskks:
-* Client-side validation of inputs.
+There are some pending development tasks:
+* Client-side validation for inputs.
 * Rating and adding reservations to favorites
-* Internationalization with angular.
-* Ordering data in the list views by column.
+* Internationalization with Angular.
+* Sorting data in the list views by column.
 * Some styling, web responsive issues and icons.
