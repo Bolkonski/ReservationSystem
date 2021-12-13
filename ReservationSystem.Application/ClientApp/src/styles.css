@@ -9,6 +9,43 @@
 @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
 
+/*Material Icons*/
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    /* src: url(iconfont/MaterialIcons-Regular.eot); For IE6-8 */
+    src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url(assets/font/MaterialIcons-Regular.ttf) format('ttf'),
+         url(assets/font/MaterialIcons-Regular.woff2) format('woff2');
+ }
+ 
+ .material-icons {
+   font-family: 'Material Icons';
+   font-weight: normal;
+   font-style: normal;
+   font-size: 24px;  /* Preferred icon size */
+   display: inline-block;
+   line-height: 1;
+   text-transform: none;
+   letter-spacing: normal;
+   word-wrap: normal;
+   white-space: nowrap;
+   direction: ltr;
+ 
+   /* Support for all WebKit browsers. */
+   -webkit-font-smoothing: antialiased;
+   /* Support for Safari and Chrome. */
+   text-rendering: optimizeLegibility;
+ 
+   /* Support for Firefox. */
+   -moz-osx-font-smoothing: grayscale;
+ 
+   /* Support for IE. */
+   font-feature-settings: 'liga';
+ }
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -58,4 +95,9 @@ td{
 }
 .cell-btns{
     float: right;
+}
+
+/*Input validation*/
+.invalid-input{
+    border: 1px solid red;
 }
