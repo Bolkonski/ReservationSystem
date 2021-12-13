@@ -7,5 +7,5 @@ export interface Reservation {
     date: string,
     description?: string,
     contactId?: number,
-    contact: Contact
+    contact?: Contact
 }

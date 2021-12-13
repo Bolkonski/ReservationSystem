@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from "@angular/material/core";
 import { Reservation } from 'src/app/models/Reservation';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 type Rating = {
   value: number;
@@ -20,7 +21,7 @@ export class ReservationItemComponent implements OnInit {
   @Input() reservation: Reservation;  
   rating: Rating;
 
-  constructor() { }
+  constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
     this.rating = {
@@ -31,4 +32,24 @@ export class ReservationItemComponent implements OnInit {
     };
   }
 
+  toggleFavorite():void{
+    this.reservation.favorite=!this.reservation.favorite;
+  }
+
+  setFavorite():void{
+    this.toggleFavorite();
+    this.reservationService.updateReservation(this.reservation)
+    .subscribe(
+      ()=>{},
+      ()=>{this.toggleFavorite()}
+      );
+  }
+
+  rateReservation(){
+    this.reservationService.rateReservation(this.reservation)
+    .subscribe(
+      ()=>{},
+      (err)=>{console.log(err)}
+    );
+  }
 }

@@ -31,4 +31,8 @@ export class ReservationService {
   updateReservation(reservation: Reservation): Observable<void> {
     return this.http.put<void>(`${API_URL}/reservations/${reservation.id}`, reservation, httpOptions);
   }
+
+  rateReservation(reservation: Reservation): Observable<void> {
+    return this.http.post<void>(`${API_URL}/reservations/rate`, reservation, httpOptions);
+  }
 }
