@@ -9,7 +9,6 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import {NgxMaterialRatingModule} from 'ngx-material-rating';
 
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
@@ -23,6 +22,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { APP_ROUTES } from './app.routes';
+import { NgxStarsModule } from 'ngx-stars';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { APP_ROUTES } from './app.routes';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatIconModule,
-    NgxMaterialRatingModule
+    NgxStarsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

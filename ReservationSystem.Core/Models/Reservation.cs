@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ReservationSystem.Core.Models
 {
@@ -7,7 +6,7 @@ namespace ReservationSystem.Core.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public int Ranking { get; set; } = 1;
+        public double Ranking { get; set; } = 0;
         public int RatesCount { get; set; } = 0;
         public bool Favorite { get; set; } = false;
         public string Description { get; set; }

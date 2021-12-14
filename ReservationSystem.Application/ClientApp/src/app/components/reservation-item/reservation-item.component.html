@@ -1,15 +1,15 @@
 <tr class="row">
     <td class="cell main">
         <p>{{(reservation.contact)&&reservation.contact.name}}</p>
-        <p>{{reservation.date|date:'EEEE, MMMM d, y a'}}</p>
+        <p>{{reservation.date|date:'EEEE MMMM d at tt a'}}</p>
     </td>
     <td class="cell ranking">
         <p>Ranking</p>
-        <p>{{reservation.ranking}}</p>
-        <ngx-material-rating [color]="rating.color" [dense]="true" 
-        [(ngModel)]="reservation.ranking" [max]="rating.max"
-        (ngModelChange)="rateReservation()">
-        </ngx-material-rating>
+        <ngx-stars [readonly]="false" 
+        [size]="1" [initialStars]="reservation.ranking||0"        
+        (ratingOutput)="rateReservation($event)"
+        [color]="'#fab025'">
+        </ngx-stars>
     </td>
     <td class="cell favorite">
         <p [class.is-favorite]="reservation.favorite">Add Favorites</p>

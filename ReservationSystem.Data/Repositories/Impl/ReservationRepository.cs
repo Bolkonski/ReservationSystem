@@ -22,8 +22,9 @@ namespace ReservationSystem.Data.Repositories.Impl
         }
         public async Task Rate(Reservation reservation)
         {
-            //SqlParameter id = reservation.Id;
-            await _context.Database.ExecuteSqlRawAsync("");
+            string sql = 
+            $"EXEC spReservation_UpdateRanking @id={reservation.Id}, @rate={reservation.Ranking}";
+            await _context.Database.ExecuteSqlRawAsync(sql);
         }
 
         public async Task Delete(Reservation reservation)

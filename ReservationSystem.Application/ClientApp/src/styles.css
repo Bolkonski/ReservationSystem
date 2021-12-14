@@ -56,6 +56,8 @@ html, body { height: 100%; }
 body{
     background-color: lightgray;
 }
+
+/*Buttons*/
 .btn{
     border: 0;
     margin: 2px;
@@ -89,7 +91,7 @@ td{
     display: flex;
 }
 .cell{
-    margin: 5px 5px 5px 5px;
+    margin: auto;
     flex-grow: 1;
     text-align: left;
 }

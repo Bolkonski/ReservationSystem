@@ -27,7 +27,7 @@ namespace ReservationSystem.Data
                 .IsRequired();
 
                 r.Property(r => r.Ranking)
-                .HasDefaultValue(1);
+                .HasDefaultValue(0);
 
                 r.Property(r => r.RatesCount)
                 .HasDefaultValue(0);

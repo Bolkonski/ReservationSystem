@@ -7,6 +7,7 @@ using ReservationSystem.Data.Repositories.Impl;
 using ReservationSystem.Business.Services;
 using ReservationSystem.Business.Services.Impl;
 using System;
+using ReservationSystem.Data.StoredProcedures;
 
 namespace ReservationSystem.Root
 {
@@ -32,6 +33,8 @@ namespace ReservationSystem.Root
             //DB Creation and Seeding
             services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IDbInitializeService, DbInitializeService>();
+            //DB Stored Procedures
+            services.AddScoped<IStoredProceduresManager, StoredProceduresManager>();
         }
         //public static void CreateDatabase(IServiceProvider services)
         //{

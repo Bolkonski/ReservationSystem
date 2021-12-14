@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ReservationSystem.Core.Models;
+using ReservationSystem.Data.StoredProcedures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,15 +15,17 @@ namespace ReservationSystem.Data
     public class DbInitializer:IDbInitializer
     {
         private ReservationSystemContext _context;
-        public DbInitializer(ReservationSystemContext context)
+        private IStoredProceduresManager _spManager;
+        public DbInitializer(ReservationSystemContext context, IStoredProceduresManager spManager)
         {
             _context = context;
+            _spManager = spManager;
         }
 
         public void CreateDatabase()
         {
            _context.Database.Migrate();
-           //StoredProcedures.StoredProceduresManager.Create();
+           _spManager.CreateProcedures();
         }
 
         public void SeedData(string filePath)

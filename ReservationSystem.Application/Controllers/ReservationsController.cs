@@ -66,11 +66,13 @@ namespace ReservationSystem.Application.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Route("Rate")]
-        public async Task<ActionResult<Reservation>> RateReservation(Reservation reservation)
+        public async Task<ActionResult<double>> RateReservation(Reservation reservation)
         {
             try
             {
                 await _service.Rate(reservation);
+                Reservation rated = await _service.GetReservationById(reservation.Id);
+                return rated.Ranking;
             }
             catch (Exception ex)
             {
@@ -80,7 +82,7 @@ namespace ReservationSystem.Application.Controllers
                     return Problem("Error rating reservation", "Reservations Controller", 500);
             }
 
-            return NoContent();
+            //return NoContent();
         }
 
         // PUT: api/Reservations/5
