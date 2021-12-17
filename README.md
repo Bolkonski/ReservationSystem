@@ -30,3 +30,6 @@ There are some pending development tasks:
 * Internationalization with Angular.
 * Sorting data in the list views by column.
 * Some styling, web responsive issues and icons.
+## Status of the project (17-12-2021)
+All pending tasks from the last status check were completed.
+There are still some design issues to be fixed, like the size of inputs in the contact form.
