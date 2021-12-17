@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { Contact } from 'src/app/models/Contact';
-import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contact-item',
@@ -10,13 +10,18 @@ import { ContactService } from 'src/app/services/contact.service';
 export class ContactItemComponent implements OnInit {
   @Input() contact: Contact;
   @Output() onDeleteContact: EventEmitter<any> = new EventEmitter();
+  activeLang: string;
 
-  constructor(private contactService: ContactService) { }
+  constructor(private translator: TranslocoService) { }
 
   ngOnInit(): void {
+    //checking on language changes to reload 'dateTranslated' pipe
+    this.translator.langChanges$.subscribe(language => {
+      this.activeLang = language;
+    });
   }
 
-  onDelete(contact:Contact): void {
+  onDelete(contact: Contact): void {
     this.onDeleteContact.emit(contact);
   }
 

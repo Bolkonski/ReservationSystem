@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { translate } from '@ngneat/transloco';
 import { Reservation } from 'src/app/models/Reservation';
 import { ContactService } from 'src/app/services/contact.service';
 import { ReservationService } from 'src/app/services/reservation.service';
@@ -16,15 +17,10 @@ export class ReservationCreateEditComponent implements OnInit {
   @ViewChild(TextEditorComponent) editor: TextEditorComponent;
   @ViewChild(ContactFormComponent) contactForm: ContactFormComponent;
   reservationId?: number;
-  //reservationDate: string;
   today: Date = new Date();
+  dateInputType: string = 'text';
 
   formGroup: FormGroup;
-  contactIdControl: AbstractControl;
-  nameControl: AbstractControl;
-  contactTypeIdControl: AbstractControl;
-  phoneControl: AbstractControl;
-  birthDateControl: AbstractControl;
   reservationDateControl: AbstractControl;
 
   checkInputs: boolean = false;
@@ -38,34 +34,21 @@ export class ReservationCreateEditComponent implements OnInit {
   ngOnInit(): void {
     //set contact form group for input validation
     this.formGroup = this.fb.group({
-      contactId: [null],
-      name: ['', [Validators.required]],
-      contactTypeId: ['', [Validators.required]],
-      phone: ['', [Validators.pattern("^[0-9]{3}-[0-9]{3}-[0-9]{3}$")]],
-      birthDate: ['', [Validators.required]],
       reservationDate: ['', [Validators.required]]
     });
-    this.contactIdControl = this.formGroup.controls['contactId'];
-    this.nameControl = this.formGroup.controls['name'];
-    this.contactTypeIdControl = this.formGroup.controls['contactTypeId'];
-    this.phoneControl = this.formGroup.controls['phone'];
-    this.birthDateControl = this.formGroup.controls['birthDate'];
     this.reservationDateControl = this.formGroup.controls['reservationDate'];
     //get id from url and load reservation if necessary
     this.reservationId = Number(this.route.snapshot.paramMap.get('id'));
     if (this.reservationId) {
       this.reservationService.getReservationById(this.reservationId)
         .subscribe((reservation: Reservation) => {
-          this.contactIdControl.setValue(reservation.contactId);
-          this.nameControl.setValue(reservation.contact?.name);
-          this.contactTypeIdControl.setValue(reservation.contact?.contactTypeId);
-          this.phoneControl.setValue(reservation.contact?.phone);
-          this.birthDateControl.setValue(reservation.contact?.birthDate);
-          // this.contactForm.contactId = reservation.contactId;
-          // this.contactForm.name = (reservation.contact) ? reservation.contact.name : '';
-          // this.contactForm.contactTypeId = (reservation.contact) ? reservation.contact.contactTypeId : -1;
-          // this.contactForm.phone = (reservation.contact) ? reservation.contact.phone || '' : '';
-          // this.contactForm.birthDate = (reservation.contact) ? reservation.contact.birthDate : '';
+          this.contactForm.contactIdControl.setValue(reservation.contactId);
+          this.contactForm.nameControl.setValue(reservation.contact?.name);
+          this.contactForm.contactTypeIdControl.setValue(reservation.contact?.contactTypeId);
+          this.contactForm.phoneControl.setValue(reservation.contact?.phone);
+          const date = new Date(reservation.contact?.birthDate || '');
+          const dateString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+          this.contactForm.birthDateControl.setValue(dateString);
           this.editor.rteObj.value = reservation.description || '';
         });
     }
@@ -74,32 +57,30 @@ export class ReservationCreateEditComponent implements OnInit {
   onSubmit(): void {
     if (!this.formGroup.valid) {
       this.checkInputs = true;
+      return;
+    }
+    if (this.contactForm.contactIdControl.value) {
+      this.contactService.updateContact({
+        id: this.contactForm.contactIdControl.value,
+        name: this.contactForm.nameControl.value,
+        contactTypeId: this.contactForm.contactTypeIdControl.value,
+        birthDate: this.contactForm.birthDateControl.value,
+        phone: this.contactForm.phoneControl.value,
+      }).subscribe(() => {
+        this.reservationMethod();
+      });
     }
     else {
-      if (!this.contactIdControl.value) {
-        this.contactService.addContact({
-          name: this.nameControl.value,
-          contactTypeId: this.contactTypeIdControl.value,
-          birthDate: this.birthDateControl.value,
-          phone: this.phoneControl.value,
-          // name: this.contactForm.name,
-          // contactTypeId: this.contactForm.contactTypeId,
-          // birthDate: this.contactForm.birthDate,
-          // phone: this.contactForm.phone
-        }).subscribe((contact) => {
-          this.contactIdControl.setValue(contact.id);
-          // this.contactForm.contactId = contact.id;
-          this.reservationMethod();
-        },
-          (error) => {
-            alert(error);
-          });
-      }
-      else {
+      this.contactService.addContact({
+        name: this.contactForm.nameControl.value,
+        contactTypeId: this.contactForm.contactTypeIdControl.value,
+        birthDate: this.contactForm.birthDateControl.value,
+        phone: this.contactForm.phoneControl.value,
+      }).subscribe((contact) => {
+        this.contactForm.contactIdControl.setValue(contact.id);
         this.reservationMethod();
-      }
+      });
     }
-
   }
 
   reservationMethod(): void {
@@ -112,16 +93,14 @@ export class ReservationCreateEditComponent implements OnInit {
     this.reservationService.addReservation({
       description: this.editor.rteObj.value,
       date: this.reservationDateControl.value,
-      contactId: this.contactIdControl.value
-      // contactId: this.contactForm.contactId || undefined
+      contactId: this.contactForm.contactIdControl.value
     })
       .subscribe((data) => {
         console.log(data);
-        this.clearContactForm();
-        // this.contactForm.clear();
+        this.clearForm();
         this.editor.rteObj.value = '';
-        this.checkInputs=false;
-        alert('Reservation created');
+        this.checkInputs = false;
+        alert(translate('reservation_created'));
       },
         (error) => {
           alert(error);
@@ -132,44 +111,25 @@ export class ReservationCreateEditComponent implements OnInit {
       id: this.reservationId,
       description: this.editor.rteObj.value,
       date: this.reservationDateControl.value,
-      contactId: this.contactIdControl.value,
-      // contactId: this.contactForm.contactId || undefined,
+      contactId: this.contactForm.contactIdControl.value,
       contact: {
-        name: this.nameControl.value,
-        contactTypeId: this.contactTypeIdControl.value,
-        birthDate: this.birthDateControl.value,
-        phone: this.phoneControl.value
-        // name: this.contactForm.name,
-        // contactTypeId: this.contactForm.contactTypeId,
-        // birthDate: this.contactForm.birthDate,
-        // phone: this.contactForm.phone
+        name: this.contactForm.nameControl.value,
+        contactTypeId: this.contactForm.contactTypeIdControl.value,
+        birthDate: this.contactForm.birthDateControl.value,
+        phone: this.contactForm.phoneControl.value
       }
     })
       .subscribe(() => {
-        alert('Reservation updated');
-        this.clearContactForm();
-        //this.contactForm.clear();
+        alert(translate('reservation_updated'));
+        this.clearForm();
         this.editor.rteObj.value = '';
       });
   }
 
-  //Input validation
-  isControlValid(controlName: string): boolean {
-    const control = this.formGroup.controls[controlName];
-    return control.valid && (control.dirty || control.touched);
-  }
-
-  clearContactForm(): void {
-    this.nameControl.setValue('');
-    this.contactIdControl.setValue(null);
-    this.phoneControl.setValue('');
-    this.birthDateControl.setValue('');
-    this.contactTypeIdControl.setValue(null);
+  clearForm(): void {
+    this.contactForm.clear();
     this.reservationDateControl.setValue('');
-    // this.name = '';
-    // this.contactId = undefined;
-    // this.phone = '';
-    // this.birthDate = '';
-    // this.contactTypeId = -1;
+    this.dateInputType = 'text';
+    this.checkInputs = false;
   }
 }

@@ -3,18 +3,22 @@
         <p>{{contact.name}}</p>
     </td>
     <td class="cell type-col">
-        <p>{{contact.contactTypeId}}</p>
+        <p>{{(contact.contactType)&&contact.contactType.name}}</p>
     </td>
     <td class="cell phone-col">
         <p>{{contact.phone}}</p>
     </td>
     <td class="cell date-col">
-        <p>{{contact.birthDate}}</p>
+        <p>{{contact.birthDate|dateTranslated:activeLang}}</p>
     </td>
-    <td class="cell">
+    <td class="cell" style="width: 26%;">
         <div class="cell-btns">
-            <button class="btn btn-gray" [routerLink]="['../contacts/edit',contact.id]">{{'Edit'|uppercase}}</button>
-            <button class="btn btn-red" (click)="onDelete(contact)">{{'Delete'|uppercase}}</button>
-        </div>        
+            <button class="btn btn-gray" [routerLink]="['../contacts/edit',contact.id]">
+                {{'edit'|transloco|uppercase}}
+            </button>
+            <button class="btn btn-red" (click)="onDelete(contact)">
+                {{'delete'|transloco|uppercase}}
+            </button>
+        </div>
     </td>
 </tr>

@@ -10,15 +10,26 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class ReservationListComponent implements OnInit {
   reservations: Reservation[] = [];
   currentPage: number = 1;
+  sortOptions:string = '';
+  sortDirection:string='';
+  sortField:string='';
 
-  constructor(private reservationService: ReservationService) { }
+  constructor(
+    private reservationService: ReservationService) { }
 
   ngOnInit(): void {
     this.reservationService.getReservations().subscribe(
       (reservations) => {
-        this.reservations = reservations;
+        this.reservations = 
+        reservations.map(x=>{
+          x.contactNameSortable=x.contact?.name.toLowerCase()||'';
+          return x;
+        });
       }
     );
   }
 
+  sortReservations(options:string):void{
+    [this.sortDirection,this.sortField]=options.split('-');
+  }
 }

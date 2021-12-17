@@ -94,6 +94,7 @@ td{
     margin: auto;
     flex-grow: 1;
     text-align: left;
+    width: 25%;
 }
 .cell-btns{
     float: right;
@@ -103,3 +104,26 @@ td{
 .invalid-input{
     border: 1px solid red;
 }
+.validation-msg{
+    color: red;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+
+input[type="date"]{
+    position: relative;   
+    padding: 5px 0 5px 24px; 
+    min-width: 185px;
+} 
+input[type="date"]::-webkit-calendar-picker-indicator{ 
+    position: absolute;
+    width: 24px;
+    height: 24px; 
+    left: 0; 
+    margin-left: 0;
+    top: 0;
+    margin-top: 3px;
+    background: url('/dist/assets/images/calendar.png') no-repeat;
+}
+input::-webkit-datetime-edit { position: relative; left: 0; }
+input::-webkit-datetime-edit-fields-wrapper { position: relative; left: 0; }

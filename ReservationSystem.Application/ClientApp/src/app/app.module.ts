@@ -9,6 +9,8 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { NgxStarsModule } from 'ngx-stars';
+import { TranslocoRootModule } from './transloco-root.module';
 
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation-list/reservation-list.component';
@@ -22,7 +24,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { APP_ROUTES } from './app.routes';
-import { NgxStarsModule } from 'ngx-stars';
+import { SortPipe } from './helpers/sort.pipe';
+import { FrenchDatePipe } from './helpers/date-translation.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { NgxStarsModule } from 'ngx-stars';
     NavComponent,
     ContactFormComponent,
     PageHeaderComponent,
+    SortPipe,
+    FrenchDatePipe
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,10 @@ import { NgxStarsModule } from 'ngx-stars';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatIconModule,
-    NgxStarsModule
+    NgxStarsModule,
+    TranslocoRootModule,
   ],
-  providers: [],
+  providers: [SortPipe,FrenchDatePipe],
   bootstrap: [AppComponent]
 })
 

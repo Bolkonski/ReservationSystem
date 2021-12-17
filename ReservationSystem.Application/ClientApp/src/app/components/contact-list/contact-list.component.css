@@ -1,3 +1,15 @@
+/*Table sorting*/
+#contact-thead>tr{
+    height: 40px;
+}
+#contact-thead th{
+    cursor: pointer;
+    display: flex;
+}
+#contact-thead .material-icons{
+    font-size: 18px;
+}
+
 /*Pagination*/
 .app-pagination ::ng-deep .ngx-pagination li {
     background: rgb(173, 168, 168);
@@ -8,4 +20,11 @@
 }
 .app-pagination{
     margin-top: 100px;
+}
+
+/*Mobile*/
+@media (max-width:480px) {
+    .type-col,.phone-col,.date-col{
+        display: none;
+    }
 }

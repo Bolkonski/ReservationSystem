@@ -1,26 +1,21 @@
+import { getLocaleDateFormat } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { ContactType } from 'src/app/models/ContactType';
 import { ContactTypeService } from 'src/app/services/contact-type.service';
 import { ContactService } from 'src/app/services/contact.service';
-import { ReservationCreateEditComponent } from '../reservation-create-edit/reservation-create-edit.component';
-
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
-  //name: string;
-  // contactId?: number;
-  // phone: string;
   birthDate: string;
-  // contactTypeId: number;
   contactTypes: ContactType[];
   searchingContact: boolean = false;
   today: Date = new Date();
-  @Input() form: FormGroup;
+  formGroup: FormGroup;
   contactIdControl: AbstractControl;
   nameControl: AbstractControl;
   contactTypeIdControl: AbstractControl;
@@ -28,6 +23,7 @@ export class ContactFormComponent implements OnInit {
   birthDateControl: AbstractControl;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   @Input() checkInputs: boolean;
+  dateInputType:string='text';
 
   constructor(
     private contactService: ContactService,
@@ -38,11 +34,18 @@ export class ContactFormComponent implements OnInit {
     this.contactTypeService.getContactTypes().subscribe((types) => {
       this.contactTypes = types;
     });
-    this.contactIdControl = this.form.controls['contactId'];
-    this.nameControl = this.form.controls['name'];
-    this.contactTypeIdControl = this.form.controls['contactTypeId'];
-    this.phoneControl = this.form.controls['phone'];
-    this.birthDateControl = this.form.controls['birthDate'];
+    this.formGroup = this.fb.group({
+      contactId: [null],
+      name: ['', [Validators.required]],
+      contactTypeId: ['', [Validators.required]],
+      phone: ['', [Validators.pattern("^[0-9]{3}-[0-9]{3}-[0-9]{3}$")]],
+      birthDate: ['', [Validators.required]]
+    });
+    this.contactIdControl = this.formGroup.controls['contactId'];
+    this.nameControl = this.formGroup.controls['name'];
+    this.contactTypeIdControl = this.formGroup.controls['contactTypeId'];
+    this.phoneControl = this.formGroup.controls['phone'];
+    this.birthDateControl = this.formGroup.controls['birthDate'];
   }
 
   searchExistingContact(): void {
@@ -54,10 +57,9 @@ export class ContactFormComponent implements OnInit {
         this.contactIdControl.setValue(data.id);
         this.contactTypeIdControl.setValue(data.contactTypeId);
         this.phoneControl.setValue(data.phone);
-        this.birthDateControl.setValue(data.birthDate);
-        // this.phone = data.phone || '';
-        // this.birthDate = data.birthDate;
-        // this.contactId = data.id || undefined;
+        const date=new Date(data.birthDate);
+        const dateString= `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+        this.birthDateControl.setValue(dateString);
         this.ngUnsubscribe.next();
         this.searchingContact = false;
       },
@@ -72,27 +74,22 @@ export class ContactFormComponent implements OnInit {
         });
   }
 
-  // clear(): void {
-  //   this.nameControl.setValue('');
-  //   this.contactIdControl.setValue(null);
-  //   this.phoneControl.setValue('');
-  //   this.birthDateControl.setValue('');
-  //   this.contactTypeIdControl.setValue(null);
-  //   // this.name = '';
-  //   // this.contactId = undefined;
-  //   // this.phone = '';
-  //   // this.birthDate = '';
-  //   // this.contactTypeId = -1;
-  // }
+  clear(): void {
+    this.nameControl.setValue('');
+    this.contactIdControl.setValue(null);
+    this.phoneControl.setValue('');
+    this.birthDateControl.setValue('');
+    this.dateInputType='text';
+    this.contactTypeIdControl.setValue('');
+    this.checkInputs = false;
+  }
   clearAutocompletion(): void {
     this.contactIdControl.setValue(null);
     this.phoneControl.setValue('');
     this.birthDateControl.setValue('');
-    this.contactTypeIdControl.setValue(null);
-    // this.contactId = undefined;
-    // this.phone = '';
-    // this.birthDate = '';
-    // this.contactTypeId = -1;
+    this.dateInputType='text';
+    this.contactTypeIdControl.setValue('');
+    this.checkInputs = false;
   }
 
   //Input validation
@@ -103,9 +100,5 @@ export class ContactFormComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
-  }
-  isControlValid(controlName: string): boolean {
-    const control = this.form.controls[controlName];
-    return control.valid && (control.dirty || control.touched);
   }
 }
