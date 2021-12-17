@@ -12,5 +12,6 @@ namespace ReservationSystem.Core.Models
         public DateTime BirthDate { get; set; }
         public string Phone { get; set; }
         public int ContactTypeId { get; set; }
+        public virtual ContactType ContactType { get; set; }
     }
 }

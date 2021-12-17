@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservationSystem.Data;
 
 namespace ReservationSystem.Data.Migrations
 {
     [DbContext(typeof(ReservationSystemContext))]
-    partial class ReservationSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20211213154555_RankingDataType")]
+    partial class RankingDataType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,6 @@ namespace ReservationSystem.Data.Migrations
                     b.Property<int>("ContactTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ContactTypeId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -45,8 +44,6 @@ namespace ReservationSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ContactTypeId");
-
-                    b.HasIndex("ContactTypeId1");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -97,7 +94,7 @@ namespace ReservationSystem.Data.Migrations
                     b.Property<double>("Ranking")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("float")
-                        .HasDefaultValue(0.0);
+                        .HasDefaultValue(1.0);
 
                     b.Property<int>("RatesCount")
                         .ValueGeneratedOnAdd()
@@ -118,12 +115,6 @@ namespace ReservationSystem.Data.Migrations
                         .HasForeignKey("ContactTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("ReservationSystem.Core.Models.ContactType", "ContactType")
-                        .WithMany()
-                        .HasForeignKey("ContactTypeId1");
-
-                    b.Navigation("ContactType");
                 });
 
             modelBuilder.Entity("ReservationSystem.Core.Models.Reservation", b =>

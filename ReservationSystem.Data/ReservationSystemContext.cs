@@ -18,8 +18,9 @@ namespace ReservationSystem.Data
         {
             //Table relations and constraints go here
 
-            builder.Entity<Reservation>(r => {
-                r.HasOne<Contact>(x=>x.Contact)
+            builder.Entity<Reservation>(r =>
+            {
+                r.HasOne(x=>x.Contact)
                 .WithMany()
                 .HasForeignKey(r => r.ContactId);
 
@@ -38,7 +39,7 @@ namespace ReservationSystem.Data
 
             builder.Entity<Contact>(c =>
             {
-                c.HasOne<ContactType>()
+                c.HasOne(x=>x.ContactType)
                 .WithMany()
                 .HasForeignKey(c => c.ContactTypeId);
 
