@@ -40,12 +40,11 @@ export class ContactCreateEditComponent implements OnInit {
   onSubmit(): void {
     if (!this.contactForm.formGroup.valid) {
       this.checkInputs = true;
+      return;
     }
-    else {
-      (this.contactForm.contactIdControl.value)
-        ? this.editContact()
-        : this.addContact();
-    }
+    (this.contactForm.contactIdControl.value)
+      ? this.editContact()
+      : this.addContact();
   }
 
   addContact(): void {

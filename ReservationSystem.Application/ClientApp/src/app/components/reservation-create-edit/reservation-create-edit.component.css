@@ -5,8 +5,9 @@
 }
 #reservation-date
 {
-    padding: 5px 0 5px 24px;
-    margin-top: 5px;
+    padding: 10px 0 10px 30px;
+    margin-top: 10px;
+    width: 170px;
 }
 .calendar-icon{ 
     position: absolute;
@@ -15,7 +16,7 @@
     left: 0; 
     margin-left: 2px;
     top: 0;
-    margin-top: 9px;
+    margin-top: 19px;
     background: url('/dist/assets/images/calendar.png') no-repeat;
 }
 

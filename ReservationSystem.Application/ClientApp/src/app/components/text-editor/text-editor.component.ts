@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
-import { RichTextEditorComponent } from '@syncfusion/ej2-angular-richtexteditor';
-import {  QuickToolbarService } from '@syncfusion/ej2-angular-richtexteditor';
+import {  QuickToolbarService, RichTextEditorComponent } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-text-editor',

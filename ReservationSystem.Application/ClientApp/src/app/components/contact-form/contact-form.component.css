@@ -5,19 +5,28 @@
     display: flex;
     justify-content: space-around;
 }
+#contact-inputs>div{
+    flex-grow: 1;
+}
+#contact-inputs>div.date-container{
+    width: 90px;
+}
+#contact-inputs>div>div{
+    margin:2px
+}
 #contact-inputs input,
 #contact-inputs select
 {
-    padding: 5px 0 5px 24px;
+    padding: 10px 0 10px 30px;
     width: 100%;
 }
 #contact-inputs input[type=date]
 {
-    padding: 4px 0 4px 24px;
+    padding: 9px 0 9px 30px;
 }
 #contact-inputs .material-icons{
     position: absolute;
-    padding-top: 4px;
+    padding-top: 9px;
     padding-left: 2px;
     color: gray;
 }
@@ -28,7 +37,7 @@
     left: 0; 
     margin-left: 2px;
     top: 0;
-    margin-top: 4px;
+    margin-top: 9px;
     background: url('/dist/assets/images/calendar.png') no-repeat;
 }
 
@@ -47,5 +56,9 @@
     #contact-inputs>*{
         padding: 5px 0 5px 0;
         margin: 5px 0 5px 0;
+    }
+
+    #contact-inputs>div.date-container{
+        width: 100%;
     }
 }

@@ -8,6 +8,7 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title: string;
   url: string;
   availableLangs: string[] | { id: string, label: string }[];
   activeLang: string;
@@ -16,6 +17,7 @@ export class AppComponent {
     router.events.subscribe((val) => {
       this.url = this.router.url;
     });
+    this.title = 'ClientApp';
   }
 
   ngOnInit(): void {
