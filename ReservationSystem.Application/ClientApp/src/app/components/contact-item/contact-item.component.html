@@ -11,7 +11,7 @@
     <td class="cell date-col">
         <p>{{contact.birthDate|dateTranslated:activeLang}}</p>
     </td>
-    <td class="cell" style="width: 26%;">
+    <td class="cell actions-col">
         <div class="cell-btns">
             <button class="btn btn-gray" [routerLink]="['../contacts/edit',contact.id]">
                 {{'edit'|transloco|uppercase}}

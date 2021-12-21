@@ -1,24 +1,37 @@
 .page-header{
-    display: flex;
-    margin: 5px 0 5px 0; 
+    margin-bottom: 5px; 
     background-color: white;
+}
+.container{
+    display: grid;
+    grid-template-columns: fit-content(300px) 1fr fit-content(300px);
 }
 .ph-title{
     color:red;
     font-size:18px;
-    flex-grow: 2;
+    margin: auto;
+    padding: 0 2px 0 2px;
 }
 .ph-description{
-    flex-grow: 1;
+    padding-left: 10px;
 }
 .ph-btn{
-    flex-grow: 1;
 }
 @media (max-width:480px) {
     .page-header{
         flex-direction: column;
     }
-    .ph-btn{
+    .container{
+        flex-direction: column;
+    }
+    .ph-title{
+        margin: 0;
+    }
+    .ph-btn
+    {
+        display: none;
+    }
+    .ph-description{
         display: none;
     }
 }

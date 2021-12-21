@@ -1,3 +1,6 @@
+.container{
+    padding: 10px 20px 12px 20px;
+}
 /*Sorting*/
 #sort-reservations>select{
     padding: 5px 0 5px 24px;

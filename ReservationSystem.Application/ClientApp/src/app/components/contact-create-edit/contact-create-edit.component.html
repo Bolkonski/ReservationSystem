@@ -1,9 +1,12 @@
 <app-page-header title="{{'contact_create'|transloco}}" goToUrl="/contacts" goToLabel="{{'contact_list'|transloco}}"></app-page-header>
 
-<form id="contact-create-edit-form" (ngSubmit)="onSubmit()">
-    <app-contact-form [checkInputs]="checkInputs"></app-contact-form>
 
-    <div id="actions">
-        <input type="submit" value="{{'send'|transloco}}" class="btn btn-red" />
-    </div>
-</form>
+<div class="container">
+    <form id="contact-create-edit-form" (ngSubmit)="onSubmit()">
+        <app-contact-form [checkInputs]="checkInputs"></app-contact-form>
+
+        <div id="actions">
+            <input type="submit" value="{{'send'|transloco}}" class="btn btn-red" />
+        </div>
+    </form>
+</div>

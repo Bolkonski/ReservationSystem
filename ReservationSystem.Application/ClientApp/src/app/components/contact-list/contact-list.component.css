@@ -1,3 +1,6 @@
+.container{
+    padding: 10px 20px 12px 20px;
+}
 /*Table sorting*/
 #contact-thead>tr{
     height: 40px;
@@ -5,6 +8,11 @@
 #contact-thead th{
     cursor: pointer;
     display: flex;
+}
+.actions-col{
+    justify-content: right;
+    padding-right: 10px;
+    width: 31%;
 }
 #contact-thead .material-icons{
     font-size: 18px;
@@ -24,7 +32,12 @@
 
 /*Mobile*/
 @media (max-width:480px) {
-    .type-col,.phone-col,.date-col{
+    #contact-thead .type-col,
+    #contact-thead .phone-col,
+    #contact-thead .date-col{
         display: none;
+    }
+    .actions-col{
+        width: 66%;
     }
 }
